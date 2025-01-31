@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 import sys
 from pathlib import Path
+from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,10 +28,10 @@ sys.path.append(APP_DIR)
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lbtdhhee(tde)1!e*ue46pd!e-pv%r0rb3_u3x6gn505-2!$ok'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = str(os.environ.get("DJANGO_DEBUG")).lower() == 'true'
+DEBUG = config("DEBUG", cast=bool)
 print("DEBUG: ", DEBUG, type(DEBUG))
 
 ALLOWED_HOSTS = [
@@ -97,6 +99,17 @@ DATABASES = {
     }
 }
 
+
+DATABASE_URL = config("DATABASE_URL", cast=str)
+DB_CON_MAX_AGE = config("DB_CON_MAX_AGE", default=30, cast=int)
+if DATABASE_URL is not None:
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=DB_CON_MAX_AGE,
+            conn_health_checks=True,
+            )
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
