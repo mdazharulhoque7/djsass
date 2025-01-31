@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import os
 import sys
 from pathlib import Path
 
@@ -28,7 +29,9 @@ sys.path.append(APP_DIR)
 SECRET_KEY = 'django-insecure-lbtdhhee(tde)1!e*ue46pd!e-pv%r0rb3_u3x6gn505-2!$ok'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.environ.get("DJANGO_DEBUG")).lower() == 'true'
+print("DEBUG: ", DEBUG, type(DEBUG))
+print("OS Env: ", os.environ)
 
 ALLOWED_HOSTS = [
     '.railway.app'
