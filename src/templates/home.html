@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Homepage - {{ block.super }}
+{% endblock page_title %}
+
+
+{% block content %}
+    Welcom to Sass Home
+    {% include './snappets/welcome-user-msg.html' %}
+    <p>Page Visit: {{page_visit}}</p>
+    <p>Visit Percentage: {{percent}}</p>
+    <p>Total Visit: {{total_visit}}</p>
+{% endblock content %}
+    Welcom to Sass Home
