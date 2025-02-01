@@ -1,3 +1,10 @@
+# igone vendor staticfiles
+src/staticfiles/vendors/
+
+# ignore local static file root
+# local cdn
+local-cdn
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
