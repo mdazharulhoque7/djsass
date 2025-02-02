@@ -101,7 +101,7 @@ DATABASES = {
 }
 
 
-DATABASE_URL = config("DATABASE_URL", default=None)
+DATABASE_URL = config("DATABASE_URL", cast=str)
 DB_CON_MAX_AGE = config("DB_CON_MAX_AGE", default=30, cast=int)
 if DATABASE_URL is not None:
     DATABASES = {
