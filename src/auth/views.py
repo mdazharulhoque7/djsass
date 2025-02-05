@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
 
 # Create your views here.
 def login_view(request):
@@ -15,4 +15,18 @@ def login_view(request):
 
 
 def register_view(request):
-    pass
+    if request.POST:
+        User = get_user_model()
+        username = request.POST['username']
+        email = request.POST['email']        
+        password = request.POST['password']
+
+        is_user_name_exist = User.objects.filter(username__iexact=username).exists()        
+        is_email_exist = User.objects.filter(email__iexact=email).exists()        
+        if any([is_user_name_exist, is_email_exist]):
+            print(f'Duplicate User with email: {is_email_exist}, username: {is_user_name_exist}')
+        try:
+            User.objects.create_user(username=username, email=email, password=password)
+        except Exception as e:
+            print(e)
+    return render(request, "auth/register.html",{})

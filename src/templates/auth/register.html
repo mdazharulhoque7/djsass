@@ -1,0 +1,11 @@
+{% extends 'layouts/v1/base.html' %}
+
+{% block content %}
+<form action="/register/" method="post">
+    {% csrf_token %} 
+    <input type="text" name="username" id="username" placeholder="Pick your username">
+    <input type="email" name="email" id="email" placeholder="Your email">
+    <input type="password" name="password" id="password" placeholder="Your password">
+    <button type="submit">Register</button>
+</form>
+{% endblock content%}
