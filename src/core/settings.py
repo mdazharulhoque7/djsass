@@ -83,9 +83,12 @@ INSTALLED_APPS = [
     'apps.visits',
 
     # Third-Party-Apps: django-allauth
+    'allauth_ui',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'widget_tweaks',
+    'slippers',
 ]
 
 MIDDLEWARE = [
