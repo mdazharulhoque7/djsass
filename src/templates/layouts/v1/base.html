@@ -18,6 +18,7 @@
     </head>
     <body>
         {% include 'layouts/v1/nav/navbar.html' %}
+        {% include 'layouts/v1/messages.html' with messages=messages %}
         {% block content %}
             
         {% endblock content %}

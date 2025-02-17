@@ -83,9 +83,12 @@ INSTALLED_APPS = [
     'apps.visits',
 
     # Third-Party-Apps: django-allauth
+    'allauth_ui',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'widget_tweaks',
+    'slippers',
 ]
 
 MIDDLEWARE = [
@@ -166,9 +169,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # ***************************************
 # Django Allauth Config
 # ***************************************
+ALLAUTH_UI_THEME = 'light'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED=True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[DJSsss]"
 LOGIN_REDIRECT_URL = "/"
 AUTHENTICATION_BACKENDS = [
